@@ -1,0 +1,18 @@
+.container{
+    margin: 0px;
+    width: 99vw;
+    display:flex;
+    padding: 20px 20px;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width:380px){
+    .container{
+        margin: 0px;
+        width: 100vw;
+        display:block;
+       padding: 0px;
+        
+    }
+    
+}

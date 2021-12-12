@@ -1,0 +1,164 @@
+.container{
+    background-color: black;
+    display: flex;
+    padding: 20px;
+    color: white;
+    height: auto;
+}
+.left{
+    flex: 2;
+}
+
+
+.left_link{
+    text-decoration: none;
+    color: white;
+}
+.left_link:hover{
+    color:white
+}
+
+.left_logo{
+    font-size:60px
+}
+.left_description{
+    width:70%;
+    margin: 20px 0px;
+}
+.left_icon{
+   
+    margin: 10px;
+    font-size:30px
+}
+
+.left_socialContainer{
+
+    width: 110px;
+    margin: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left_iconBlock{
+    border-top: 1px solid white;
+    border-bottom: 2px solid white;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   margin-left: 5xp;
+   
+}
+.left_iconBlock:hover{
+ background-color:white;
+ color: black;
+}
+
+.displayFlex{
+    display: flex;
+}
+
+
+/* Center */
+.center{
+    display: flex;
+    justify-content: center;
+    
+    padding: 20px;
+    flex: 2;
+}
+
+.center_title{
+    margin-bottom: 40px;
+    width: 100%;
+}
+.center_list{
+   
+    margin:0 ;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.center_link{
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    font-size:20px;
+    color: white;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    width: 50%;
+}
+
+
+/* Right */
+
+.right{
+    display: flex;
+    justify-content: center;
+    
+    padding: 20px;
+    flex: 1;
+}
+.right_title{
+    margin-bottom: 40px;
+}
+
+.right_items{
+    display: flex;
+   cursor: pointer;
+    margin-bottom: 20px;
+}
+.right_icon{
+    display: flex;
+    align-items: center;
+    font-size:20px;
+    margin-right:20px;
+    margin-bottom: 8px;
+}
+
+@media only screen and (max-width:440px){
+    .center{
+        display: none;
+    }
+    .left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid gray
+    }
+    .left_logo{
+        font-size:50px
+    }
+    .left_description{
+        display: none;
+    }
+    .container{
+        background-color: black;
+        display: block;
+        padding: 20px;
+        color: white;
+        height: auto;
+    }
+    .right{
+        display: flex;
+        justify-content: flex-start;
+        
+        padding: 20px;
+        flex: 1;
+    }
+    .right_title{
+        margin-bottom: 20px;
+    }
+    
+    .right_items{
+        display: flex;
+       cursor: pointer;
+        margin-bottom: 10px;
+    }
+}

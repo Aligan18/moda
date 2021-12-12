@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin :10px
+}
+
+
+.add{
+    border-radius: 50%;
+    background-color:white;
+    font-size: 20px;
+    border: 1px solid;
+}
+
+.add:hover{
+    transform: scale(1.1);
+}
+.amount{
+    display: flex;
+    margin: 20px;
+    font-size: 25px;
+}

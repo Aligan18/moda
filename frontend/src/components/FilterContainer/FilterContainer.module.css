@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 40px;
+    background-color:rgb(198, 255, 238);
+}
+.filter{
+    display: flex;
+    align-items: center;
+    
+    padding: 10px;
+    
+}
+.title{
+    margin-right: 10px;
+    margin-top:5px
+}
+
+.filtrContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.dropdown{
+    margin-left: 10px;
+}
+
+@media (max-width: 440px){
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       
+        background-color:rgb(198, 255, 238);
+    }
+    .title{
+        display: none;
+    }
+    .filter{
+        display: flex;
+        align-items: center;
+        
+        padding: 0px;
+        
+    }
+}
