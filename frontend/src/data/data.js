@@ -40,6 +40,7 @@ export const cotegories = [
       title: "LIGHT JACKETS",
     },
     
+    
    
   ];
 
