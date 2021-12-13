@@ -1,20 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
+const dotenv = require("dotenv");
+const userRoute = require('./routes/user')
 
-const PORT= 5000
-const MONGO_URL='mongodb://Aligan18:Aligan18@moda-store-shard-00-00.6zpix.mongodb.net:27017,moda-store-shard-00-01.6zpix.mongodb.net:27017,moda-store-shard-00-02.6zpix.mongodb.net:27017/moda-store?ssl=true&replicaSet=atlas-4rv5w7-shard-0&authSource=admin&retryWrites=true&w=majority'
+dotenv.config()
+const app = express();
+app.use(express.json())
+// Route
+app.use('/api',userRoute)
+
+
 
 const serverRun =async()=>{
+
     try {
-        await mongoose.connect(MONGO_URL)
+        await mongoose.connect(process.env.MONGO_URL)
         console.log('Mobgodb running')
+        app.listen(process.env.PORT || 5000, ()=>{
+            console.log('SERVER RUNNING IN 5000 PORT')
+        })
     } catch (error) {
         console.error(error)
     }
-}
-serverRun()
 
-app.listen(5000, ()=>{
-    console.log('SERVER RUNNING IN 5000 PORT')
-})
+}
+
+
+serverRun();
+
