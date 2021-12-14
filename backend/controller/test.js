@@ -3,11 +3,11 @@
 
 class TestController{
 
-     testGet =async(req,res)=>{
+    testGet =async(req,res)=>{
 
         res.send('user test is successfull ')
     }
-    testPost =(req,res)=>{
+    UpdateUser =(req,res)=>{
             try {
                 const username = req.body.username
                 res.send('your user name is '+ username)
