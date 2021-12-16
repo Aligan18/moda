@@ -1,93 +1,90 @@
+const Product = require('../models/Product')
 
 
+class ProductController{
+    
+    UpdateProduct =async(req,res)=>{
+        
+        
+        try {
+            const updatedProduct= await Product.findByIdAndUpdate(req.params.id,{
+                $set: req.body
+            },{new: true})
 
-class TestController{
+            res.status(200).json(updatedProduct)
 
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+   }
       
-   UpdateUser =async(req,res)=>{
+   AddProduct =async(req,res)=>{
         
-    if(req.body.password){
-    
-        req.body.password= CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString()
+       const newProduct = new Product(req.body)
+
+       try {
+           const savedProduct = await newProduct.save()
+           res.status(200).json(savedProduct)
+       } catch (error) {
+           res.status(401).json(error.message)
+       }
     }
 
+    DeleteProduct = async(req,res)=>{
+        try {
+            await Product.findByIdAndDelete(req.params.id)
 
-    try {
-        const updatedUser= await User.findByIdAndUpdate(req.params.id,{
-            $set: req.body
-        },{new: true})
+            res.status(200).json("Product has been deleted")
 
-        res.status(200).json(updatedUser)
-
-    } catch (error) {
-        res.status(500).json(error)
+        } catch (error) {
+            res.status(500).json(error)
+        }   
     }
-}
 
-DeleteUser = async(req,res)=>{
-    try {
-         await User.findByIdAndDelete(req.params.id)
+    GetProduct = async(req,res)=>{
+        try {
+            const product = await Product.findById(req.params.id)
 
-        res.status(200).json("User has been deleted")
+            res.status(200).json(product)
 
-    } catch (error) {
-        res.status(500).json(error)
-    }   
-}
-
-GetUser = async(req,res)=>{
-    try {
-        const user = await User.findById(req.params.id)
-
-        const {password , ...others} = user._doc
-        res.status(200).json(others)
-
-        
-
-    } catch (error) {
-        res.status(500).json(error)
-    }   
-}
-
-GetAllUsers = async(req,res)=>{
-    
-    try {
-         const qwery = req.query.new   
-         const users = qwery? await User.find().sort({_id:-1}).limit(5) : await User.find()
-
-        res.status(200).json(users)
-
-    } catch (error) {
-        res.status(500).json(error.message)
-    }   
-}
-
-GetUserStats = async(req,res)=>{
-        const date = new Date()
-        const lastYear = new Date(date.setFullYear(date.getFullYear()-1))
-    try {
-         
-        const data = await User.aggregate([
-            {$match:{createdAt:{$gte : lastYear }}},
-
-            {$project: { month: {$month:"$createdAt"}}},
-
-            {$group:{
-                _id:"$month",
-                total:{$sum:1},
-            },},
             
-        ])
 
-        res.status(200).json(data)
+        } catch (error) {
+            res.status(500).json(error.message)
+        }   
+    }
 
-    } catch (error) {
-        res.status(501).json(error.message)
-    }   
+    GetAllProduct = async(req,res)=>{
+
+            const qNew = req.query.new 
+            const qCategory = req.query.category
+
+        try {
+            let products ;
+            if(qNew && qCategory ){
+                products = await Product.find({categories:{$in:[qCategory]}}).sort({createdAt:-1}).limit(5)
+            }
+            else if (qNew){
+                products = await Product.find().sort({createdAt:-1}).limit(5)
+            }
+            else if(qCategory){
+                products = await Product.find({categories:{$in:[qCategory]}})
+            }
+            else {
+                products = await Product.find()
+            }
+
+            res.status(200).json(products)
+
+        } catch (error) {
+            res.status(500).json(error.message)
+        }   
+    }
+
+
 }
-}
-
-}
 
 
-module.exports = new TestController;
+
+
+module.exports = new ProductController;

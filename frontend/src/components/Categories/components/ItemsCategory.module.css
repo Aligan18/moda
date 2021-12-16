@@ -3,7 +3,7 @@
     padding: 7px;
     min-width:235px;
 }
-.cotegory{
+.category{
     
     display: flex;
     position: relative;
@@ -47,7 +47,7 @@
         padding:0px;
         
     }
-    .cotegory{
+    .category{
         height: 30vh;
         margin: 10px 0px;
     }

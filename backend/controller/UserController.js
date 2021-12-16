@@ -66,6 +66,7 @@ class UserController{
     GetUserStats = async(req,res)=>{
             const date = new Date()
             const lastYear = new Date(date.setFullYear(date.getFullYear()-1))
+            console.log(lastYear)
         try {
              
             const data = await User.aggregate([

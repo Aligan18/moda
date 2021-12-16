@@ -2,19 +2,19 @@ import React from 'react'
 
 import { routerPaths } from '../../../router/router'
 import {Link} from 'react-router-dom'
-import classes from './ItemsCotegory.module.css'
+import classes from './ItemsCategory.module.css'
 
-const CotegoryItems = ({cotegory, total}) => {
+const CategoryItems = ({category, total}) => {
     return (
         <div className={classes.col} >
-            <div className={classes.cotegory}>
+            <div className={classes.category}>
                 {/* Image */}
-                <img className={classes.img} alt=""  src={cotegory.img}/>
+                <img className={classes.img} alt=""  src={category.img}/>
                 <div className={classes.info}> 
                     {/* Title */}
-                    <h1 className={classes.title}>{cotegory.title}</h1>
+                    <h1 className={classes.title}>{category.title}</h1>
                     {/* Button */}
-                    <Link to={routerPaths.PRODUCT_LIST}>
+                    <Link to={routerPaths.PRODUCT_LIST + category.category}>
                         <button className={classes.btn} >ПОДРОБНЕЕ</button>
                     </Link>
                 </div>
@@ -23,4 +23,4 @@ const CotegoryItems = ({cotegory, total}) => {
     )
 }
 
-export default CotegoryItems
+export default CategoryItems

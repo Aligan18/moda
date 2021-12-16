@@ -3,7 +3,7 @@ import classes from './FilterContainer.module.css'
 import MyDropdown from '../Dropdown/MyDropdown'
 
 
-const FilterContainer = () => {
+const FilterContainer = ({filter, setFilter}) => {
     const colorFilter=[
         'Red' ,
         'White',
@@ -12,8 +12,16 @@ const FilterContainer = () => {
         'Fiolet',
         'Blue'
     ]
+    const sizeFilter=[
+        'X' ,
+        'M',
+        'S',
+        'L' ,
+        
+    ]
+    
 
-    const [value , setValue] = useState('Цвет')
+    
     
 
 
@@ -23,25 +31,32 @@ const FilterContainer = () => {
                     <div className={classes.filter}>
                     <h5 className={classes.title}>Подбор параметров:</h5>
                     
-                            <MyDropdown value={value} 
-                                        setValue={setValue}
+                            <MyDropdown name={"color"} 
+                                        title={filter.color}
+                                        filter={filter}
+                                        setFilter={setFilter}
                                         classes={classes} 
-                                        colors={colorFilter}
+                                        items={colorFilter}
+                                        
                                         
                                         />
 
-                            <MyDropdown value={value}
-                                        setValue={setValue} 
+                            <MyDropdown name={"size"}
+                                         title={filter.size}
+                                         filter={filter}
+                                        setFilter={setFilter} 
                                         classes={classes} 
-                                        colors={colorFilter}/> 
+                                        items={sizeFilter}/> 
                     </div>
             
                     <div className={classes.filter}>
                             <h5 className={classes.title}> Вначале:</h5>
-                            <MyDropdown value={value}  
-                                        setValue={setValue} 
+                            <MyDropdown name={"new"}
+                                        title={filter.new}
+                                        filter={filter}  
+                                        setFilter={setFilter} 
                                         classes={classes} 
-                                        colors={colorFilter}/>
+                                        items={colorFilter}/>
                     </div>
             
             </div>

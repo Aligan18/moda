@@ -1,31 +1,72 @@
+const Cart = require('../models/Cart')
 
 
+class CartController{
+    
+        UpdateCart =async(req,res)=>{
+            
+            
+            try {
+                const updatedCart= await Cart.findByIdAndUpdate(req.params.id,{
+                    $set: req.body
+                },{new: true})
 
-class TestController{
+                res.status(200).json(updatedCart)
 
-    testGet =async(req,res)=>{
+            } catch (error) {
+                res.status(500).json(error.message)
+            }
+    }
+      
+        AddCartItem =async(req,res)=>{
+                
+            const newCartItem = new Cart(req.body)
 
-       res.send('user test is successfull ')
-   }
-   testPost =(req,res)=>{
-           try {
-               const username = req.body.username
-               res.send('your user name is '+ username)
-           } catch (error) {
-               res.send(error.message)
-           }
-          
-     
-   }
-   testDelete =async(req,res)=>{
+            try {
+                const savedCartItem = await newCartItem.save()
+                res.status(200).json(savedCartItem)
+            } catch (error) {
+                res.status(401).json(error.message)
+            }
+        }
 
-       res.send('user test is successfull ')
-   }
-   testPull =async(req,res)=>{
+        DeleteCartItem = async(req,res)=>{
+            try {
+                await Cart.findByIdAndDelete(req.params.id)
 
-       res.send('user test is successfull ')
-   }
+                res.status(200).json("Cart item has been deleted")
+
+            } catch (error) {
+                res.status(500).json(error)
+            }   
+        }
+
+
+        GetUserCart = async(req,res)=>{
+            try {
+                const cart = await Cart.findOne({userId: req.params.userId})
+
+                res.status(200).json(cart)
+
+                
+
+            } catch (error) {
+                res.status(500).json(error.message)
+            }   
+        }
+
+    GetCartList = async(req,res)=>{
+
+        try {
+            const carts = await Cart.find()
+            res.status(200).json(carts)
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+
+    }
 }
 
 
-module.exports = new TestController;
+
+module.exports = new CartController;

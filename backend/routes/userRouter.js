@@ -4,15 +4,15 @@ const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../routes/v
 
 
 // update
-router.put('/:id',verifyTokenAndAuthorization,  Controller.UpdateUser)
+router.put('/users/:id',verifyTokenAndAuthorization,  Controller.UpdateUser)
 // delete
-router.delete('/:id',verifyTokenAndAdmin, Controller.DeleteUser)
+router.delete('/users/:id',verifyTokenAndAdmin, Controller.DeleteUser)
 // get users info
-router.get('/find/:id',verifyTokenAndAdmin, Controller.GetUser)
+router.get('/users/find/:id',verifyTokenAndAdmin, Controller.GetUser)
 // get all users 
-router.get('/find/',verifyTokenAndAdmin, Controller.GetAllUsers)
+router.get('/users/find/',verifyTokenAndAdmin, Controller.GetAllUsers)
 // get user stats
-router.get('/stats',verifyTokenAndAdmin, Controller.GetUserStats)
+router.get('/users/stats',verifyTokenAndAdmin, Controller.GetUserStats)
 
 
 

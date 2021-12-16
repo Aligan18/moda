@@ -1,7 +1,7 @@
 import React from 'react'
 import MyNavbar from '../../components/Navbar/MyNavbar'
 import Slider from '../../components/Slider/Slider'
-import Cotegories from '../../components/Cotegories/Cotegories'
+import Categories from '../../components/Categories/Categories'
 import Products from '../../components/Products/Products'
 import Footer from '../../components/Footer/Footer'
 
@@ -10,7 +10,7 @@ const Home = () => {
 
             <MyNavbar/>
             <Slider/>
-            <Cotegories/>
+            <Categories/>
             <Products/>
             <Footer/>
        </div>

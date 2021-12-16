@@ -1,16 +1,26 @@
 import React from 'react'
 import {Dropdown , DropdownButton} from 'react-bootstrap'
 
-const MyDropdown = ({colors, classes, value, setValue}) => {
+const MyDropdown = ({items, classes,name, title, filter, setFilter}) => {
+
+    const handleFilters =(event)=>{
+        const targetValue = event.target.outerText
+       
+        setFilter({
+            ...filter ,
+            [name]:targetValue
+        })
+    }
+
     return (
        
              <DropdownButton
                 className={classes.dropdown}
                 variant='outline-secondary'
-                title={value}
+                title={title}
             >
-                    {colors.map((color, index )=>(
-                        <Dropdown.Item key={index} onClick={(event)=>setValue(event.target.outerText)} >{color}</Dropdown.Item>
+                    {items.map((item, index )=>(
+                        <Dropdown.Item key={index} onClick={handleFilters} >{item}</Dropdown.Item>
                     ))} 
 
             </DropdownButton>
