@@ -11,17 +11,29 @@ export const routerPaths ={
     CART: '/cart',
     LOGIN: '/login',
     REGISTER: '/register',
-    PRODUCT: '/product', 
-    PRODUCT_LIST: '/product/list',
+    PRODUCT: '/product/', 
+    PRODUCT_LIST: '/products/',
+}
+export const dynamicRouterPaths ={
+   
+    PRODUCT: '/product/:id', 
+    PRODUCT_LIST: '/products/:category',
 }
 
 
-export const router =[
+export const PublicRouter =[
     {path: routerPaths.HOME, component:Home,  exact :true},
-    {path: routerPaths.CART, component:Cart,  exact :true},
     {path: routerPaths.LOGIN, component:Login,  exact :true},
     {path: routerPaths.REGISTER, component:Register,  exact :true},
-    {path: routerPaths.PRODUCT, component:Product,  exact :true},
-    {path: routerPaths.PRODUCT_LIST, component:ProductList,  exact :true},
+    {path: dynamicRouterPaths.PRODUCT, component:Product,  exact :true},
+    {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
+    
+]
+
+export const PrivatRouter =[
+    {path: routerPaths.HOME, component:Home,  exact :true},
+    {path: routerPaths.CART, component:Cart,  exact :true},
+    {path: dynamicRouterPaths.PRODUCT, component:Product,  exact :true},
+    {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
     
 ]

@@ -5,22 +5,34 @@ import './App.css';
 
 import {Switch, Route, Redirect} from 'react-router-dom'
 
-import { router } from './router/router';
+import { PrivatRouter, PublicRouter } from './router/router';
 
 
 function App() {
+    const auth=false
+
+
   return (
       <Switch>
       
-        {router.map(route=>(
-
-          <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
-
-        ))}
-
-      <Redirect to='/'/>
+        {auth
+          ?PrivatRouter.map(route=>(
+                
+              <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
+            ))
         
-         
+          :PublicRouter.map(route=>(
+
+              <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
+            ))
+            
+        }
+
+        {auth?
+          <Redirect to='/'/>
+          :<Redirect to='/login'/>
+        }
+     
       </Switch>
   );
 }

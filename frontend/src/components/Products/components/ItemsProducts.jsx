@@ -17,7 +17,7 @@ const ItemsProducts = ({product}) => {
                     </div>
 
                     {/* Search */}
-                    <Link className='produc_link' to={routerPaths.PRODUCT}>
+                    <Link className='produc_link' to={routerPaths.PRODUCT + product.id}>
                         <div className='product_icon_circle'>
                             <i className="fas fa-search product_icon"></i>
                         </div>
