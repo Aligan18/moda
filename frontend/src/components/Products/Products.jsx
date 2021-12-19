@@ -1,12 +1,18 @@
 import React from 'react'
 import {popularProducts} from '../../data/data'
 import ItemsProducts from './components/ItemsProducts'
-import './Products.css'
-const Products = () => {
+import classes from './Products.module.css'
+
+
+
+
+const Products = ({products}) => {
+   
+
     return (
-        <div className="products_container">
-            {popularProducts.map(product =>(
-                <ItemsProducts key={product.id} product={product} />
+        <div className={classes.container}>
+            {products.map(product =>(
+                <ItemsProducts classes={classes} key={product._id} product={product} />
             ))
             }
         </div>

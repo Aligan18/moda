@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './CartList.module.css'
+
 
 
 import {cartProduct} from '../../data/data' 

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Controller= require('../controller/CartController')
-const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../routes/verifyToken')
+const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../service/verifyToken')
 
 // Get all carts for Admin
 router.get('/cart/', verifyTokenAndAdmin, Controller.GetCartList)

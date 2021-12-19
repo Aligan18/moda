@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Badge} from "react-bootstrap"
+import {  Badge} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import { routerPaths } from '../../../router/router'
 

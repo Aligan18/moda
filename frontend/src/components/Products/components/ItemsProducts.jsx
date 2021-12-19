@@ -1,30 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { router, routerPaths } from '../../../router/router'
+import {  routerPaths } from '../../../router/router'
 
-const ItemsProducts = ({product}) => {
+
+const ItemsProducts = ({product , classes}) => {
     return (
-        <div className='product_container'>
-            <div className='product_circle'/>
+        <div className={classes.product_container}>
+            <div className={classes.circle}/>
                 {/* Image */}
-                <img className='product_img' alt='' src={product.img}/>
+                <img className={classes.img} alt='' src={process.env.REACT_APP_STATIC_LOC+ product.img} />
 
                 {/* Icons */}
-                <div className='product_info'>
+                <div className={classes.info}>
                     {/* Add to cart */}
-                    <div className='product_icon_circle'>
-                         <i className="fas fa-cart-plus product_icon"></i>
+                    <div className={classes.icon_circle}>
+                         <i className={`fas fa-cart-plus ${classes.icon}`}></i>
                     </div>
 
                     {/* Search */}
-                    <Link className='produc_link' to={routerPaths.PRODUCT + product.id}>
-                        <div className='product_icon_circle'>
-                            <i className="fas fa-search product_icon"></i>
+                    <Link className={classes.link} to={routerPaths.PRODUCT + product._id}>
+                        <div className={classes.icon_circle}>
+                            <i className={`fas fa-search ${classes.icon}`}></i>
                         </div>
                     </Link>
                     {/* Add to Favorites */}
-                    <div className='product_icon_circle'>
-                        <i className="far fa-heart product_icon"></i>
+                    <div className={classes.icon_circle}>
+                        <i className={`far fa-heart ${classes.icon}`}></i>
                     </div>
                 </div>
             

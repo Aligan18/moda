@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Controller= require('../controller/OrderController')
-const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../routes/verifyToken')
+const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../service/verifyToken')
 
 // User create order
 router.post('/order',verifyTokenAndAuthorization, Controller.CreatOrder)

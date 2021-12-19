@@ -1,5 +1,5 @@
 const Product = require('../models/Product')
-
+const FileService = require('../service/FileService')
 
 class ProductController{
     
@@ -19,10 +19,13 @@ class ProductController{
    }
       
    AddProduct =async(req,res)=>{
-        
-       const newProduct = new Product(req.body)
+       
+        const fileName = FileService.saveFile(req.files.img)
+        const product = {...req.body,img: fileName }
+       const newProduct = new Product(product)  
 
        try {
+
            const savedProduct = await newProduct.save()
            res.status(200).json(savedProduct)
        } catch (error) {
@@ -32,6 +35,10 @@ class ProductController{
 
     DeleteProduct = async(req,res)=>{
         try {
+            const product = await Product.findById(req.params.id)
+            console.log(product)
+            FileService.deletFile(product.img)
+
             await Product.findByIdAndDelete(req.params.id)
 
             res.status(200).json("Product has been deleted")
@@ -43,8 +50,9 @@ class ProductController{
 
     GetProduct = async(req,res)=>{
         try {
+            
             const product = await Product.findById(req.params.id)
-
+         
             res.status(200).json(product)
 
             
@@ -58,6 +66,7 @@ class ProductController{
 
             const qNew = req.query.new 
             const qCategory = req.query.category
+            
 
         try {
             let products ;

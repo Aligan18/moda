@@ -9,7 +9,7 @@ import { PrivatRouter, PublicRouter } from './router/router';
 
 
 function App() {
-    const auth=false
+    const auth=true
 
 
   return (
