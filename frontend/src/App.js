@@ -6,10 +6,11 @@ import './App.css';
 import {Switch, Route, Redirect} from 'react-router-dom'
 
 import { PrivatRouter, PublicRouter } from './router/router';
+import { useSelector } from 'react-redux';
 
 
 function App() {
-    const auth=true
+    const auth=useSelector(state=>state.user.currentUser)
 
 
   return (

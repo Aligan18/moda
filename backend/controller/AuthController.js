@@ -19,20 +19,25 @@ class TestController{
             res.status(200).json(saveUser)    
 
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json(error.message)
         }
    };
 
    Login = async(req,res)=>{
         try {
             const user = await User.findOne({username : req.body.username})
-
-            !user && res.status(401).json('Неверный логин или пароль')
+                if(!user){
+                   
+                    return res.status(401).send("Неверный логин или пароль")
+                }
             
             const hashedPassword=  CryptoJS.AES.decrypt(user.password, process.env.PASS_SEC);
             const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8)
 
-            OriginalPassword !== req.body.password && res.status(401).json('Неверный логин или пароль')
+           if( OriginalPassword !== req.body.password ){ 
+               
+                return res.status(401).send('Неверный логин или пароль')
+            }
             // create jwt token
             const accessToken =jwt.sign({
                     id: user._id,
@@ -45,9 +50,10 @@ class TestController{
 
             const {password , ...others} = user._doc
             res.status(200).json({accessToken,...others})
+            
 
         } catch (error) {
-            res.status(401).json(error)
+            res.status(402).json(error)
         }       
    }
   

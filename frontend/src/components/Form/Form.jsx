@@ -1,28 +1,47 @@
-import React from 'react'
+import React,{ useState} from 'react'
 import classes from './Form.module.css'
 import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
-const FormRegister = ({staff}) => {
+const Form = ({staff, method, setMethod, buttonClick}) => {
+    const {isFetching, error, errorMessage} = useSelector(state=>state.user)
+    let timer
 
-    
-
-
+    const inputChange =(event)=>{
+        clearTimeout(timer)
+       timer= setTimeout(()=>{
+            setMethod({
+                ...method,
+                [event.target.name] : event.target.value
+            })
+        },900)
+    }
 
     
     return (
        
         
             <div className={classes.wrapper}>
-
+                {isFetching&& <div className={classes.isFetching}></div>}
                 <h1 className={classes.title}> {staff.title} </h1>
 
                 <form className={classes.form}>
-                    {staff.placeholder.map(holder=>(
-                        <input key={holder.placeholder} className={classes.input} placeholder={holder}/>
+                    {staff.placeholder.map((holder,index)=>(
+                        <input 
+                                 onChange={(event)=>inputChange(event)} 
+                                 name={staff.value[index]} 
+                                 key={holder} 
+                                 className={classes.input} 
+                                 placeholder={holder}
+                                 type={holder==="Пароль" && "password"}
+                                 />
                     ))}
                 </form>
+
+                {error && <h5 className={classes.error}>{errorMessage}</h5>}
+
                 <div className={classes.create_box} >      
-                    <button className={classes.btn}>{staff.button}</button>
+                    <button onClick={buttonClick} className={classes.btn}>{staff.button}</button>
 
                      <Link className={classes.create_account} to={staff.route}>
                         {staff.linkTitle}
@@ -35,4 +54,4 @@ const FormRegister = ({staff}) => {
     )
 }
 
-export default FormRegister
+export default Form

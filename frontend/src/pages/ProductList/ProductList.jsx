@@ -1,10 +1,15 @@
 import React, { useState,useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import axios from 'axios'
+
+import {publicRequest} from '../../axios/requestMethods'
+
 import FilterContainer from '../../components/FilterContainer/FilterContainer'
 import Footer from '../../components/Footer/Footer'
 import MyNavbar from '../../components/Navbar/MyNavbar'
 import Products from '../../components/Products/Products'
+
+// tools
+import Filter from '../../tools/Filter'
 
 const ProductList = () => {
     const location = useLocation()
@@ -13,7 +18,9 @@ const ProductList = () => {
         color:"color",
         size:"size",
     })
-    const [sort, setSort]=useState("")
+    const [sort, setSort]=useState({
+        first:"Сортировать"
+    })
     const [products, setProducts ] = useState([])
     const [filtredProducts, setFiltredProducts ] = useState([])
 
@@ -22,9 +29,9 @@ const ProductList = () => {
        const getProducts = async() =>{
             try {
                 console.log(category)
-                const res = await axios.get(category?
-                                                `${process.env.REACT_APP_STATIC_LOC}api/product/find/?category=${category}`
-                                                :`${process.env.REACT_APP_STATIC_LOC}api/product/find/`)
+                const res = await publicRequest.get(category?
+                                                `api/product/find/?category=${category}`
+                                                :`api/product/find/`)
             
                 setProducts(res.data)
             } catch (error) {
@@ -33,13 +40,18 @@ const ProductList = () => {
        }
        getProducts()
     }, [category])
-    
+    // filter 
     useEffect(()=>{
         category && setFiltredProducts(
             products
         )
     },[category, products, filter ])
 
+// sort 
+    useEffect(()=>{
+       Filter.ByNewAndСheaper(sort.first, setFiltredProducts,filtredProducts )
+
+    },[sort])
 
 
     return (

@@ -2,18 +2,18 @@ import React from 'react'
 
 
 
-import {cartProduct} from '../../data/data' 
+
 import CartItem from './components/CartItem'
 
 
 
-const CartList = () => {
+const CartList = ({cart}) => {
 
     
 
 
     return (<div>
-        {cartProduct.map((product,index) =>
+        {cart.map((product,index) =>
             <CartItem key={index} product={product}/>
         )}
     </div>

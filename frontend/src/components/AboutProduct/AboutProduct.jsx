@@ -2,7 +2,7 @@ import React from 'react'
 import Counter  from '../Counter/Counter'
 import classes from './AboutProduct.module.css'
 
-const AboutProduct = ({product}) => {
+const AboutProduct = ({product, amount, setAmount, addToCart}) => {
     return (
         <div className={classes.wrapper}>
             <div className={classes.imageContainer}>
@@ -21,9 +21,9 @@ const AboutProduct = ({product}) => {
                 <h3 className={classes.price}> {product.price} тг </h3>      
 
                 <div className={classes.addContainer}>
-                    <Counter amount={1} />
+                    <Counter amount={amount} setAmount={setAmount} />
                     <div className={classes.buttonBox}>
-                        <button className={classes.cart}>Добавить в корзину</button>
+                        <button onClick={addToCart} className={classes.cart}>Добавить в корзину</button>
                     </div>
                 </div>
 
