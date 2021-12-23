@@ -5,12 +5,11 @@ class CartController{
     
         UpdateCart =async(req,res)=>{
             
-            
+           
             try {
-                const updatedCart= await Cart.findByIdAndUpdate(req.params.id,{
-                    $set: req.body
-                },{new: true})
-
+                console.log("body", req.body.products)
+                const updatedCart = await Cart.findOneAndUpdate({userId: req.params.id},{ $set: {products: req.body.products}})
+               
                 res.status(200).json(updatedCart)
 
             } catch (error) {
@@ -18,7 +17,7 @@ class CartController{
             }
     }
       
-        AddCartItem =async(req,res)=>{
+        AddCart=async(req,res)=>{
                 
             const newCartItem = new Cart(req.body)
 
@@ -44,7 +43,7 @@ class CartController{
 
         GetUserCart = async(req,res)=>{
             try {
-                const cart = await Cart.findOne({userId: req.params.userId})
+                const cart = await Cart.findOne({userId: req.params.id})
 
                 res.status(200).json(cart)
 

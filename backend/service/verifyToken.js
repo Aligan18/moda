@@ -4,14 +4,15 @@ const verifyToken = (req,res,next)=>{
     const authHeader = req.headers.token;
     if (authHeader) {
         const token = authHeader.split(' ')[1]
+        console.log(token)
         jwt.verify(token, process.env.JWT_SEC,(err,user)=>{
-            if(err) res.status(403).json("Token is not valid")
+            if(err) res.status(403).send("Token is not valid")
             req.user = user
             next();
         })
         
     } else {    
-        return res.status(401).json("You are not authenticated")
+        return res.status(401).send("You are not authenticated")
     }
 }
 
@@ -21,7 +22,8 @@ const verifyTokenAndAuthorization = (req, res, next )=>{
         if (req.user.id===req.params.id || req.user.isAdmin) {
             next()
         } else {
-            res.status(403).json("У Вас нет доступа")
+            
+            res.status(403).send(req.params.id,"У Вас нет доступа")
         }
     })
 }
@@ -30,7 +32,7 @@ const verifyTokenAndAdmin = (req, res, next )=>{
             if (req.user.isAdmin) {
                 next()
             } else {
-                res.status(403).json("У Вас нет доступа")
+                res.status(403).send("У Вас нет доступа")
             }
         })
 }

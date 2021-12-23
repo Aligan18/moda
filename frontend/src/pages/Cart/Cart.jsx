@@ -4,8 +4,13 @@ import OrderSheet from '../../components/OrderSheet/OrderSheet'
 import Footer from '../../components/Footer/Footer'
 import MyNavbar from '../../components/Navbar/MyNavbar'
 import classes from './Cart.module.css'
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
+
+    const cart = useSelector(state=>state.cart)
+
+
     return (
         <div className={classes.container}>
             <MyNavbar/>
@@ -13,8 +18,7 @@ const Cart = () => {
                     <h1 className={classes.title}>
                         Корзина покупок
                     </h1>
-                    {/* fjfsd */}
-                    
+ 
                     <div className={classes.top}>
                         <button className={classes.button}>Вернуться к товарам</button>
                         <div className={classes.top_textsBox}>
@@ -31,11 +35,11 @@ const Cart = () => {
                     </div>
                     <div className={classes.bottom}>
                         <div className={classes.cartList}>
-                            <CartList className={classes.bottom_cartList}/>
+                            <CartList cart={cart.products} className={classes.bottom_cartList}/>
                         </div>
                         <div className={classes.orderBox}>
                             <div className={classes.orderSheet} >
-                                <OrderSheet/>
+                                <OrderSheet cart={cart}/>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { route } = require("express/lib/application");
 const Controller= require('../controller/ProductController')
-const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../routes/verifyToken')
+const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../service/verifyToken')
 
 router.post('/product',verifyTokenAndAdmin, Controller.AddProduct)
 // Get product by id

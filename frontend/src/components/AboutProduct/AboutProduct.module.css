@@ -11,7 +11,7 @@
 .img{
     width: 100%;
     height: 90vh;
-    object-fit: cover;
+    object-fit: contain;
 }
 .infoContainer{
     flex: 1;
@@ -55,7 +55,7 @@
 }
 
 
-@media (max-width: 440px){
+@media (max-width: 500px){
     .wrapper{
 
         padding: 10px;
@@ -72,6 +72,12 @@
         display: flex;
         
     }
+    .imageContainer{
+        flex: 1;
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
     .infoContainer{
         flex: 1;
         padding: 0px 5px;
@@ -82,5 +88,25 @@
         padding: 10px;
         border: 2px solid rgb(36, 163, 110);
         background-color:white
+    }
+}
+
+@media (min-width: 768px) and (max-width: 800px){
+    .wrapper{
+
+        padding: 10px;
+        display: block;
+        width: 100%;
+    }
+    .imageContainer{
+        flex: 1;
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .img{
+        width: 100%;
+        height: 80vh;
+        object-fit: cover;
     }
 }

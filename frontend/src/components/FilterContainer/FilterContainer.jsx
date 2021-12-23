@@ -3,7 +3,7 @@ import classes from './FilterContainer.module.css'
 import MyDropdown from '../Dropdown/MyDropdown'
 
 
-const FilterContainer = ({filter, setFilter}) => {
+const FilterContainer = ({sort , setSort,filter, setFilter}) => {
     const colorFilter=[
         'Red' ,
         'White',
@@ -18,6 +18,11 @@ const FilterContainer = ({filter, setFilter}) => {
         'S',
         'L' ,
         
+    ]
+    const sortValue = [
+        'Новые',
+        'Дешевые',
+        'Дорогие',
     ]
     
 
@@ -51,12 +56,12 @@ const FilterContainer = ({filter, setFilter}) => {
             
                     <div className={classes.filter}>
                             <h5 className={classes.title}> Вначале:</h5>
-                            <MyDropdown name={"new"}
-                                        title={filter.new}
-                                        filter={filter}  
-                                        setFilter={setFilter} 
+                            <MyDropdown name={"first"}
+                                        title={sort.first}
+                                        filter={sort}  
+                                        setFilter={setSort} 
                                         classes={classes} 
-                                        items={colorFilter}/>
+                                        items={sortValue}/>  
                     </div>
             
             </div>

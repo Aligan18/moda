@@ -1,10 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Form from '../../components/Form/Form'
 import classes from './Login.module.css'
+import {publicRequest} from "../../axios/requestMethods" 
+import { useHistory } from 'react-router-dom';
+
+import {useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
+
+import {login} from '../../redux/apiCalls/apiCalls'
+
+
+
 
 const Login = () => {
+    const {isFetching, errorMessage} = useSelector(state=>state.user)
+    
+    
+    const [user, setUser]= useState({})
+    const dispatch = useDispatch() 
     const loginStaff={
             placeholder: ['Login','Пароль'],
+            value:['username', 'password'],
             title:'ВОЙТИ В АККАУНТ',
             button:'ВОЙТИ',
             linkTitle:'Создать аккаунт',
@@ -13,11 +29,24 @@ const Login = () => {
         }
     
 
+    const buttonClick=async(event)=>{
+        event.preventDefault();
+       
+        login(dispatch, user.username , user.password )
+        
+    }
+
 
     return (
         <div style={{ background:`url(${loginStaff.background})`}}>
         <div className={classes.container}>
-            <Form  staff={loginStaff}/>
+            <Form   buttonClick={buttonClick}  
+                    method={user} 
+                    setMethod={setUser} 
+                    staff={loginStaff}
+                    error={errorMessage}
+                    isFetching={isFetching}
+                    />
         </div>
         </div>
     )

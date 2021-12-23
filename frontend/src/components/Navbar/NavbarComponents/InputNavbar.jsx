@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, InputGroup, FormControl, Button } from "react-bootstrap"
+import {  InputGroup, FormControl, Button } from "react-bootstrap"
 
 const InputNavbar = ({classes}) => {
     return (

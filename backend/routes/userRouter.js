@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Controller= require('../controller/UserController')
-const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../routes/verifyToken')
+const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../service/verifyToken')
 
 
 // update

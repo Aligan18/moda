@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Col, Image} from "react-bootstrap"
+
 import { routerPaths } from '../../../router/router'
 
 const LogoNavbar = ({classes}) => {

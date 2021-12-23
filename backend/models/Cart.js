@@ -4,8 +4,17 @@ const Schema = new mongoose.Schema( {
         userId:{type: String , required: true,},
         products:[{
                 
-               productId: {type: String  },
-               quantity: {type: Number, default:1}
+              
+               quantity: {type: Number, default:1},
+               categories: [{type: String}],
+                desc: {type: String  },
+                id: {type: String  },
+                img: {type: String  },
+                inStock: {type: Boolean, default:true  },
+                price: {type: Number },
+                title: {type: String  },
+                
+                
         }],
        
     },{timestamps:true}

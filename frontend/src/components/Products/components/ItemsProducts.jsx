@@ -1,32 +1,56 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { router, routerPaths } from '../../../router/router'
+import { Link, useHistory } from 'react-router-dom'
+import {  routerPaths } from '../../../router/router'
+import { useDispatch, useSelector } from 'react-redux'
+import CartTools from "../../../tools/cartTools"
 
-const ItemsProducts = ({product}) => {
+const ItemsProducts = ({product , classes}) => {
+    const auth = useSelector(state => state.user.currentUser)
+    const history =useHistory()
+
+    const quantity =1 
+    const id = product._id
+    const dispatch = useDispatch()
+    
+    const addCart = () =>{
+        auth ?   CartTools.addToCart({product, quantity , dispatch, id })
+             : history.push('/login')
+      
+    }
+
     return (
-        <div className='product_container'>
-            <div className='product_circle'/>
+        <div className={classes.product_container}>
+            
                 {/* Image */}
-                <img className='product_img' alt='' src={product.img}/>
-
+                <div className={classes.preview}>
+                    <div className={classes.img_box}>
+                        <img className={classes.img} alt='' src={process.env.REACT_APP_STATIC_LOC+ product.img} />
+                    </div>
+                    <div className={classes.text_box}>
+                         <h5> {product.title}</h5>
+                    </div>
+                    <div className={classes.price}>
+                         <h2>{product.price} тг</h2>
+                    </div>
+                </div>
                 {/* Icons */}
-                <div className='product_info'>
+                <div className={classes.info}>
                     {/* Add to cart */}
-                    <div className='product_icon_circle'>
-                         <i className="fas fa-cart-plus product_icon"></i>
+                    <div onClick={addCart} className={classes.icon_circle}>
+                         <i className={`fas fa-cart-plus ${classes.icon}`}></i>
                     </div>
 
                     {/* Search */}
-                    <Link className='produc_link' to={routerPaths.PRODUCT + product.id}>
-                        <div className='product_icon_circle'>
-                            <i className="fas fa-search product_icon"></i>
+                    <Link className={classes.link} to={routerPaths.PRODUCT + product._id}>
+                        <div className={classes.icon_circle}>
+                            <i className={`fas fa-search ${classes.icon}`}></i>
                         </div>
                     </Link>
                     {/* Add to Favorites */}
-                    <div className='product_icon_circle'>
-                        <i className="far fa-heart product_icon"></i>
+                    <div className={classes.icon_circle}>
+                        <i className={`far fa-heart ${classes.icon}`}></i>
                     </div>
-                </div>
+            </div>
             
         </div>
     )
