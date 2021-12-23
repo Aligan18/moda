@@ -3,12 +3,18 @@ import Form from '../../components/Form/Form'
 import classes from './Login.module.css'
 import {publicRequest} from "../../axios/requestMethods" 
 import { useHistory } from 'react-router-dom';
+
 import {useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
+
 import {login} from '../../redux/apiCalls/apiCalls'
 
 
+
+
 const Login = () => {
-    const history = useHistory()
+    const {isFetching, errorMessage} = useSelector(state=>state.user)
+    
     
     const [user, setUser]= useState({})
     const dispatch = useDispatch() 
@@ -34,7 +40,13 @@ const Login = () => {
     return (
         <div style={{ background:`url(${loginStaff.background})`}}>
         <div className={classes.container}>
-            <Form buttonClick={buttonClick}  method={user} setMethod={setUser} staff={loginStaff}/>
+            <Form   buttonClick={buttonClick}  
+                    method={user} 
+                    setMethod={setUser} 
+                    staff={loginStaff}
+                    error={errorMessage}
+                    isFetching={isFetching}
+                    />
         </div>
         </div>
     )

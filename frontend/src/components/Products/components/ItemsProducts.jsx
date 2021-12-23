@@ -1,16 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {  routerPaths } from '../../../router/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CartTools from "../../../tools/cartTools"
 
 const ItemsProducts = ({product , classes}) => {
+    const auth = useSelector(state => state.user.currentUser)
+    const history =useHistory()
+
     const quantity =1 
     const id = product._id
     const dispatch = useDispatch()
     
     const addCart = () =>{
-        CartTools.addToCart({product, quantity , dispatch, id })
+        auth ?   CartTools.addToCart({product, quantity , dispatch, id })
+             : history.push('/login')
+      
     }
 
     return (

@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import {publicRequest} from '../../axios/requestMethods'
 
@@ -8,12 +8,17 @@ import Footer from '../../components/Footer/Footer'
 import AboutProduct from '../../components/AboutProduct/AboutProduct'
 
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import CartTools from "../../tools/cartTools"
 
+
 const Product = () => {
+    const auth =useSelector(state => state.user.currentUser)
+    const history = useHistory()
+
     const location = useLocation()
     const id = location.pathname.split('/')[2]
+
     const [product, setProduct] = useState({})
     const [quantity, setQuantity] = useState(1)
     
@@ -34,7 +39,12 @@ const Product = () => {
     }, [id])
 
     const addToCart=()=>{
-        CartTools.addToCart({product, quantity, dispatch , id })
+
+        if(auth){
+            CartTools.addToCart({product, quantity, dispatch , id }) }
+        else{
+            history.push('/login')
+        }
     }
 
     return (

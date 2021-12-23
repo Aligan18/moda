@@ -3,16 +3,16 @@ const Controller= require('../controller/CartController')
 const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../service/verifyToken')
 
 // Get all carts for Admin
-router.get('/cart/', verifyTokenAndAdmin, Controller.GetCartList)
+router.get('/cart', verifyTokenAndAdmin, Controller.GetCartList)
 
 // Get users cart list
-router.get('/cart/:userId', verifyTokenAndAuthorization, Controller.GetUserCart)
+router.get('/cart/find/:id', verifyTokenAndAuthorization, Controller.GetUserCart)
 
 // Add cart item
-router.post('/cart',verifyTokenAndAuthorization, Controller.AddCartItem)
+router.post('/cart', Controller.AddCart)
 
 // Update cart
-router.put('/cart/:id',verifyTokenAndAuthorization, Controller.UpdateCart)
+router.put('/cart/find/:id', Controller.UpdateCart) //verifyTokenAndAuthorization
 
 // Delete cart item
 router.delete('/cart/:id',verifyTokenAndAuthorization, Controller.DeleteCartItem)

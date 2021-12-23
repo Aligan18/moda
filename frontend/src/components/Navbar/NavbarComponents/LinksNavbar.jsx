@@ -1,20 +1,48 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import {  Badge} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import { routerPaths } from '../../../router/router'
 
 import {useSelector} from 'react-redux'
 import { useDispatch } from 'react-redux'
+
+import { userCreateRequest} from '../../../axios/requestMethods'
+
+import {cartLogout} from '../../../redux/reducers/cartReducer'
 import {logout} from '../../../redux/reducers/userReducer'
 
 
 const LinksNavbar = ({classes}) => {
-    const quantity = useSelector(state => state.cart.products.length)
+    
+    const user = useSelector(state => state.user.currentUser)
+    const amountProducts = useSelector(state => state.cart.amountProducts)
     const auth = useSelector(state => state.user.currentUser)
+    const products = useSelector(state => state.cart.products)
+    
+    
+    useEffect(() => {
+        const updateCart = async () =>{
+        
+            const userRequest =  userCreateRequest(user.accessToken)
+            try {
+                await userRequest.put(`/api/cart/find/${user._id}`,{products})
+                
+            } catch (error) {
+                console.log(error)
+            }
+            
+        }
+        auth && updateCart()
+    },[amountProducts])
+    
+    
+
+
     const dispatch = useDispatch()
 
     const Logout =()=>{
         dispatch(logout())
+        dispatch( cartLogout())
     }
 
     return (
@@ -26,8 +54,8 @@ const LinksNavbar = ({classes}) => {
                   <Link className={classes.link} to={routerPaths.REGISTER}>РЕГИСТРАЦИЯ</Link></>
             }
             <div>
-            <Link className={classes.link_icon} to={routerPaths.CART}><i className="fas fa-shopping-cart"></i></Link>
-            <Badge className={classes.link_badge} bg="secondary">{quantity}</Badge>
+            <Link className={classes.link_icon} to={ routerPaths.CART}><i className="fas fa-shopping-cart"></i></Link>
+            <Badge className={classes.link_badge} bg="secondary">{auth && amountProducts}</Badge>
             </div>
         </div>
     )

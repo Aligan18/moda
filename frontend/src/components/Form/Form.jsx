@@ -1,10 +1,11 @@
-import React,{ useState} from 'react'
+import React,{ useState, useEffect} from 'react'
 import classes from './Form.module.css'
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
-const Form = ({staff, method, setMethod, buttonClick}) => {
-    const {isFetching, error, errorMessage} = useSelector(state=>state.user)
+
+const Form = ({staff, method, setMethod, buttonClick , error,isFetching}) => {
+    
     let timer
 
     const inputChange =(event)=>{
@@ -14,7 +15,7 @@ const Form = ({staff, method, setMethod, buttonClick}) => {
                 ...method,
                 [event.target.name] : event.target.value
             })
-        },900)
+        },600)
     }
 
     
@@ -25,20 +26,21 @@ const Form = ({staff, method, setMethod, buttonClick}) => {
                 {isFetching&& <div className={classes.isFetching}></div>}
                 <h1 className={classes.title}> {staff.title} </h1>
 
-                <form className={classes.form}>
+                <form  className={classes.form}>
                     {staff.placeholder.map((holder,index)=>(
-                        <input 
+                        <input   
                                  onChange={(event)=>inputChange(event)} 
                                  name={staff.value[index]} 
                                  key={holder} 
                                  className={classes.input} 
                                  placeholder={holder}
-                                 type={holder==="Пароль" && "password"}
+                                 type={holder==="Пароль"? "password": null}
+                                 autoComplete="new-password"
                                  />
                     ))}
                 </form>
 
-                {error && <h5 className={classes.error}>{errorMessage}</h5>}
+                {error && <h5 className={classes.error}>{error}</h5>}
 
                 <div className={classes.create_box} >      
                     <button onClick={buttonClick} className={classes.btn}>{staff.button}</button>

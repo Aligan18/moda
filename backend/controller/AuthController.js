@@ -19,7 +19,7 @@ class TestController{
             res.status(200).json(saveUser)    
 
         } catch (error) {
-            res.status(500).json(error.message)
+            res.status(500).send("Пользователь уже существует, используйте другой логин или email")
         }
    };
 
