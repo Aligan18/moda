@@ -5,38 +5,41 @@ const jwt = require("jsonwebtoken")
 class TestController{
 
    Registration =async(req,res)=>{
-
+   
         const newUser= new User({
-
-            username: req.body.username,
+            
+            name:req.body.name,
+            surname:req.body.surname,
+            login: req.body.login,
             email: req.body.email,
             password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString(),
 
         })
-        
+      
         try {
             const saveUser = await newUser.save()    
             res.status(200).json(saveUser)    
 
         } catch (error) {
-            res.status(500).send("Пользователь уже существует, используйте другой логин или email")
+            res.status(501).send("Пользователь уже существует, используйте другой логин или email")
         }
    };
 
    Login = async(req,res)=>{
         try {
-            const user = await User.findOne({username : req.body.username})
+            const user = await User.findOne({login : req.body.login})
                 if(!user){
-                   
+                    
                     return res.status(401).send("Неверный логин или пароль")
                 }
-            
+           
             const hashedPassword=  CryptoJS.AES.decrypt(user.password, process.env.PASS_SEC);
             const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8)
 
            if( OriginalPassword !== req.body.password ){ 
                
-                return res.status(401).send('Неверный логин или пароль')
+              
+                return res.status(402).send('Неверный логин или пароль')
             }
             // create jwt token
             const accessToken =jwt.sign({

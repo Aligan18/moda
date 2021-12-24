@@ -2,15 +2,20 @@ import React, {useEffect,useState} from 'react'
 import classes from './CartItem.module.css'
 import Counter from '../../Counter/Counter'
 
+
+
 import { useDispatch } from 'react-redux'
 import CartTools from "../../../tools/cartTools"
 import {deleteProduct} from '../../../redux/reducers/cartReducer'
 
 const CartItem = ({product}) => {
+
     
     const id = product._id
     const[quantity,setQuantity] =useState(product.quantity)
     const dispatch = useDispatch()
+
+
 
     useEffect(() => {
         CartTools.addToCart({product, quantity, dispatch , id })

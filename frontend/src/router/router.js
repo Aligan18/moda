@@ -12,12 +12,14 @@ export const routerPaths ={
     LOGIN: '/login',
     REGISTER: '/register',
     PRODUCT: '/product/', 
-    PRODUCT_LIST: '/products/',
+    PRODUCT_LIST: '/products/category/',
+    SEARCH_PRODUCTS: '/products/search/'
 }
 export const dynamicRouterPaths ={
    
     PRODUCT: '/product/:id', 
-    PRODUCT_LIST: '/products/:category',
+    PRODUCT_LIST: '/products/category/:category',
+    
 }
 
 
@@ -27,6 +29,7 @@ export const PublicRouter =[
     {path: routerPaths.REGISTER, component:Register,  exact :true},
     {path: dynamicRouterPaths.PRODUCT, component:Product,  exact :true},
     {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
+    {path: routerPaths.SEARCH_PRODUCTS, component:ProductList,  exact :true},
     
 ]
 
@@ -35,5 +38,5 @@ export const PrivatRouter =[
     {path: routerPaths.CART, component:Cart,  exact :true},
     {path: dynamicRouterPaths.PRODUCT, component:Product,  exact :true},
     {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
-    
+    {path: routerPaths.SEARCH_PRODUCTS, component:ProductList,  exact :true},
 ]

@@ -7,7 +7,7 @@ class CartController{
             
            
             try {
-                console.log("body", req.body.products)
+               
                 const updatedCart = await Cart.findOneAndUpdate({userId: req.params.id},{ $set: {products: req.body.products}})
                
                 res.status(200).json(updatedCart)

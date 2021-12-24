@@ -36,7 +36,7 @@ class ProductController{
     DeleteProduct = async(req,res)=>{
         try {
             const product = await Product.findById(req.params.id)
-            console.log(product)
+            
             FileService.deletFile(product.img)
 
             await Product.findByIdAndDelete(req.params.id)
@@ -62,7 +62,7 @@ class ProductController{
         }   
     }
 
-    GetAllProduct = async(req,res)=>{
+    GetAllProductByCategory = async(req,res)=>{
 
             const qNew = req.query.new 
             const qCategory = req.query.category
@@ -71,10 +71,10 @@ class ProductController{
         try {
             let products ;
             if(qNew && qCategory ){
-                products = await Product.find({categories:{$in:[qCategory]}}).sort({createdAt:-1}).limit(5)
+                products = await Product.find({categories:{$in:[qCategory]}}).sort({createdAt:-1}).limit()
             }
             else if (qNew){
-                products = await Product.find().sort({createdAt:-1}).limit(5)
+                products = await Product.find().sort({createdAt:-1}).limit()
             }
             else if(qCategory){
                 products = await Product.find({categories:{$in:[qCategory]}})
@@ -82,12 +82,25 @@ class ProductController{
             else {
                 products = await Product.find()
             }
-
+           
             res.status(200).json(products)
 
         } catch (error) {
             res.status(500).json(error.message)
         }   
+    }
+    GetAllProductByName =async(req,res)=>{
+
+       
+
+        try {
+            const products = await Product.find()
+           
+            res.status(200).json(products)
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+
     }
 
 

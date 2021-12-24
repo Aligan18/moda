@@ -1,5 +1,5 @@
 import React from 'react'
-import {popularProducts} from '../../data/data'
+
 import ItemsProducts from './components/ItemsProducts'
 import classes from './Products.module.css'
 
