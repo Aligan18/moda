@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
-import axios from 'axios'
+
+import {publicRequest} from '../../axios/requestMethods'
 
 import MyNavbar from '../../components/Navbar/MyNavbar'
 import Slider from '../../components/Slider/Slider'
@@ -12,7 +13,7 @@ const Home = () => {
 
     useEffect(()=>{
         const getAllProducts = async () =>{
-            const res = await axios.get(`${process.env.REACT_APP_STATIC_LOC}api/product/find/`)
+            const res = await publicRequest.get(`api/product/category/find/`)
             setProducts(res.data)
         }
         getAllProducts()

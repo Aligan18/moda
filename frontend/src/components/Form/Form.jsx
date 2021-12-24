@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
 
-const Form = ({staff, method, setMethod, buttonClick , error,isFetching}) => {
+const Form = ({staff, method, setMethod, buttonClick , error,isFetching , validation}) => {
     
     let timer
 
@@ -15,6 +15,7 @@ const Form = ({staff, method, setMethod, buttonClick , error,isFetching}) => {
                 ...method,
                 [event.target.name] : event.target.value
             })
+          
         },600)
     }
 
@@ -28,7 +29,7 @@ const Form = ({staff, method, setMethod, buttonClick , error,isFetching}) => {
 
                 <form  className={classes.form}>
                     {staff.placeholder.map((holder,index)=>(
-                        <input   
+                      <div className={classes.inputContainer}> <input   
                                  onChange={(event)=>inputChange(event)} 
                                  name={staff.value[index]} 
                                  key={holder} 
@@ -37,6 +38,8 @@ const Form = ({staff, method, setMethod, buttonClick , error,isFetching}) => {
                                  type={holder==="Пароль"? "password": null}
                                  autoComplete="new-password"
                                  />
+                       {validation.isError && <h7 className={classes.error}>{validation.error[staff.value[index]]}</h7>} 
+                    </div> 
                     ))}
                 </form>
 

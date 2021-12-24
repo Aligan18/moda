@@ -6,8 +6,10 @@ const {verifyTokenAndAuthorization , verifyTokenAndAdmin} = require('../service/
 router.post('/product',verifyTokenAndAdmin, Controller.AddProduct)
 // Get product by id
 router.get('/product/find/:id', Controller.GetProduct )
-//Get all products
-router.get('/product/find', Controller.GetAllProduct)
+//Get all products by category
+router.get('/product/category/find', Controller.GetAllProductByCategory)
+//Get all products by product name
+router.get('/product/search/find/', Controller.GetAllProductByName)
 // Update product info
 router.put('/product/update/:id',verifyTokenAndAdmin, Controller.UpdateProduct)
 // Delete product

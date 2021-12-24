@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import classes from './FilterContainer.module.css'
 import MyDropdown from '../Dropdown/MyDropdown'
 
 
-const FilterContainer = ({sort , setSort,filter, setFilter}) => {
+const FilterContainer = ({sort , setSort,filter, setFilter , search}) => {
     const colorFilter=[
         'Red' ,
         'White',
@@ -65,6 +65,7 @@ const FilterContainer = ({sort , setSort,filter, setFilter}) => {
                     </div>
             
             </div>
+            {search && <div className={classes.search}><h3>Все результаты по запросу: {search}</h3></div>}
         </div>
     )
 }

@@ -1,13 +1,22 @@
 import React, {useState} from 'react'
 import Form from '../../components/Form/Form'
+import GoBackButton from '../../components/goBack/GoBackButton'
+import {useDispatch} from 'react-redux'
+
+import {registration} from '../../redux/apiCalls/apiCalls'
+
 import classes from './Register.module.css'
-import {publicRequest} from "../../axios/requestMethods" 
 import { useHistory } from 'react-router-dom'
+
+
 
 const Register = () => {
     const [error, setError] = useState('')
+    const [validation, setValidation] = useState({})
     const [register, setRegister]= useState({})
     const history = useHistory()
+
+    const dispatch = useDispatch()
     
     const registerStaff={
         placeholder: [
@@ -21,10 +30,10 @@ const Register = () => {
         value:[
                 "surname",
                 'name',
-                'username',
+                'login',
                 'email',
                 'password',
-                'repeatPass'
+                'dublication'
         ],
         title:'СОЗДАТЬ АККАУНТ',
         button:'СОЗДАТЬ',
@@ -35,30 +44,17 @@ const Register = () => {
    
 
     const buttonClick=async()=>{
-        try {
-            const res = await publicRequest.post('/api/register',register)
-            console.log(res.data)
-            try {
-                const userId = res.data._id
-                 await publicRequest.post('/api/cart',{userId ,  products:[]})
-
-                 setError('')
-                 history.push('/login')
-            } catch (error) {
-                console.log(error)
-            }
-
-        } catch (error) {
-            setError(error.response.data)
-        }
-        
-        
+        registration(dispatch,register,validation, setValidation,setError, history)
     }
+
+   
 
     return (
         <div style={{ background:`url(${registerStaff.background})`}}>
+        <GoBackButton history={history} classes={classes}/>
             <div className={classes.container}>
-                <Form method={register} setMethod={setRegister} buttonClick={buttonClick} error={error} staff={registerStaff}/>
+            
+                <Form method={register} setMethod={setRegister} buttonClick={buttonClick} validation={validation} error={error} staff={registerStaff}/>
             </div>
         </div>
     )

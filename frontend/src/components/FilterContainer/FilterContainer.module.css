@@ -1,11 +1,11 @@
 .container{
-    display: flex;
+    display: block;
     justify-content: space-between;
     align-items: center;
-    height: 30px;
-    padding: 40px;
+    padding: 0px 20px;
     background-color:rgb(198, 255, 238);
 }
+
 .filter{
     display: flex;
     align-items: center;
@@ -23,9 +23,14 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 10px;
 }
-.dropdown{
+.dropdown{ 
     margin-left: 10px;
+}
+.search {
+    padding: 10px;
+    border-top: 1px solid grey
 }
 
 @media (max-width: 440px){

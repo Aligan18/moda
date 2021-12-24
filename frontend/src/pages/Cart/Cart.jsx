@@ -4,12 +4,18 @@ import OrderSheet from '../../components/OrderSheet/OrderSheet'
 import Footer from '../../components/Footer/Footer'
 import MyNavbar from '../../components/Navbar/MyNavbar'
 import classes from './Cart.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector  } from 'react-redux'
+
+import { useHistory } from 'react-router-dom'
 
 const Cart = () => {
 
-    const cart = useSelector(state=>state.cart)
+    const history = useHistory()
 
+    const cart = useSelector(state=>state.cart)
+    const goBack=()=>{
+        history.goBack()
+    }
 
     return (
         <div className={classes.container}>
@@ -20,7 +26,7 @@ const Cart = () => {
                     </h1>
  
                     <div className={classes.top}>
-                        <button className={classes.button}>Вернуться к товарам</button>
+                        <button onClick={goBack} className={classes.button}>Вернуться к товарам</button>
                         <div className={classes.top_textsBox}>
 
                             <div className={classes.textCenter}>
