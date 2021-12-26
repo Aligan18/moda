@@ -1,26 +1,15 @@
-import React, { useState,  } from 'react'
+import React from 'react'
 import {  InputGroup, FormControl, Button } from "react-bootstrap"
 
-import {useDispatch, useSelector} from 'react-redux'
-import {changeSearchItems} from '../../../redux/reducers/searchReducer'
-
-import {useHistory} from 'react-router-dom'
-import {routerPaths} from '../../../router/router'
 
 
 
+const InputNavbar = ({classes, value, setValue,handleClick}) => {
+    
 
-const InputNavbar = ({classes}) => {
-    const dispatch = useDispatch()
+   
 
-    const [value, setValue] = useState('')
-    const history = useHistory()
-
-    const handleClick=()=>{
-        dispatch(changeSearchItems({value}))
-        history.push(routerPaths.SEARCH_PRODUCTS )
-    }
-
+    
     
 
     return (

@@ -15,6 +15,7 @@ import {login} from '../../redux/apiCalls/apiCalls'
 
 const Login = () => {
     const {isFetching, errorMessage} = useSelector(state=>state.user)
+    console.log(isFetching)
     const history = useHistory()
     const validation={isError:false}
     const [user, setUser]= useState({})
@@ -37,7 +38,7 @@ const Login = () => {
         
     }
 
-
+    
     return (
         <div style={{ background:`url(${loginStaff.background})`}}>
         <GoBackButton history={history} classes={classes}/>

@@ -14,9 +14,13 @@ import {logout} from '../../../redux/reducers/userReducer'
 
 const LinksNavbar = ({classes}) => {
     
+
+    
+
     const user = useSelector(state => state.user.currentUser)
     const amountProducts = useSelector(state => state.cart.amountProducts)
     const auth = useSelector(state => state.user.currentUser)
+    const isAdmin = auth && auth.isAdmin
     const products = useSelector(state => state.cart.products)
     
     
@@ -47,8 +51,11 @@ const LinksNavbar = ({classes}) => {
 
     return (
         <div className={classes.right}>
-            {auth ? 
-                  <h6 onClick={Logout} className={classes.link}>ВЫЙТИ</h6>
+            {auth ?
+                    <>
+                        <h6 onClick={Logout} className={classes.link}>ВЫЙТИ</h6>
+                        {isAdmin && <Link className={classes.link} to={routerPaths.DASHBOARD}>АДМИН</Link>}  
+                    </>
                 :
                 <><Link className={classes.link} to={routerPaths.LOGIN}>ВОЙТИ</Link>
                   <Link className={classes.link} to={routerPaths.REGISTER}>РЕГИСТРАЦИЯ</Link></>

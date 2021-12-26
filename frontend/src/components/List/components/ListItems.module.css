@@ -1,0 +1,34 @@
+.wrapper{
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid
+
+}
+.checkbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.box{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin:20px 0xp;
+}
+.btn{
+    margin-left: 10px;
+    background-color:white;
+    border:none;
+    font-size:20px
+}
+.btn:hover{
+    transition: all 0.2s ease;
+    transform: scale(1.1);
+    margin-left: 10px;
+    background-color:white;
+    border:none;
+    font-size:20px
+}

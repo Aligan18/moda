@@ -1,7 +1,7 @@
 import React,{ useState, useEffect} from 'react'
 import classes from './Form.module.css'
 import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+
 
 
 const Form = ({staff, method, setMethod, buttonClick , error,isFetching , validation}) => {

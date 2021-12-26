@@ -5,32 +5,55 @@ import './App.css';
 
 import {Switch, Route, Redirect} from 'react-router-dom'
 
-import { PrivatRouter, PublicRouter } from './router/router';
+import { PrivatRouter, PublicRouter ,DashboardRouter} from './router/router';
 import { useSelector } from 'react-redux';
 
 
 function App() {
-    const auth=useSelector(state=>state.user.currentUser)
+    // let auth=useSelector(state=>state.user.currentUser)
+
+    // const isAdmin =  auth? auth.isAdmin : false
+    
+    // auth = auth? true : false
+
+
+    const auth = true
+    const isAdmin = true
+
+    console.log('admin',isAdmin)
 
 
   return (
       <Switch>
       
-        {auth
-          ?PrivatRouter.map(route=>(
+        {auth?
+                (isAdmin? 
                 
-              <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
-            ))
+                    DashboardRouter.map(route=> (
+                      
+                      <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
+                    
+                    ))
+                  :
+              
+                    PrivatRouter.map(route=>(
+                          
+                        <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
+                      ))
+                )
+            
         
           :PublicRouter.map(route=>(
 
               <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
             ))
+
             
         }
 
-        {auth?
-          <Redirect to='/'/>
+       { console.log("auth",auth)}
+        {auth
+        ?<Redirect to='/'/>
           :<Redirect to='/login'/>
         }
      

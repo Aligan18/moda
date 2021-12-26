@@ -50,7 +50,7 @@ const Product = () => {
     return (
         <div>
             <MyNavbar/>
-            <AboutProduct product={product} setAmount={setQuantity}  amount={quantity} addToCart={addToCart} />
+                <AboutProduct product={product} setAmount={setQuantity}  amount={quantity} handleClick={addToCart} />
             <Footer/>
         </div>
     )

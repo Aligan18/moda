@@ -23,7 +23,7 @@ export const login = async(dispatch,login, password)=>{
         
     } catch (error) {
 
-        dispatch(loginFailure(error.response.data))
+        error.response? dispatch(loginFailure(error.response.data)): dispatch(loginFailure("Сервер временно не доступен"))
 
     }
 
@@ -55,7 +55,7 @@ console.log(validation)
                     history.push('/login')
 
                 } catch (error) {
-                    console.log(error)
+                   
                     dispatch(registrationEnd())
                 }
 
