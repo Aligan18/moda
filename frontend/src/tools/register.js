@@ -51,6 +51,20 @@
       
     }
 
+    checkPhone=(phone)=>{
+        if(phone){
+            const number = phone.split("+")[1]
+            if (number){
+                return number.length < 11 ? "Не правильный номер телефона " : false
+            }
+            else{return 'Номер должен начинаться с +'}
+            
+         }
+        else{
+            return "Введите номер телефона"
+        }
+    }
+
     
 
 

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import {publicRequest} from '../../axios/requestMethods'
-
+import fetchProduct from '../../tools/fetchProduct'
 import {useSelector} from 'react-redux'
 
 import FilterContainer from '../../components/FilterContainer/FilterContainer'
@@ -30,22 +30,20 @@ const ProductList = () => {
     const [products, setProducts ] = useState([])
     const [filtredProducts, setFiltredProducts ] = useState([])
 
-
+    //Get All products
     useEffect(() => {
-       const getProducts = async() =>{
-            try {
-                console.log(category)
-                const res = await publicRequest.get(methodSearch==="category"?
-                                                `api/product/category/find/?category=${category}`
-                                                :`api/product/search/find/`)
-            
-                setProducts(res.data)
-            } catch (error) {
-                console.log(error)
-            }  
+    
+       const getAllProducts=async()=>{
+           const products =await fetchProduct.getAll(methodSearch,category)
+        setProducts(products)
+
        }
-       getProducts()
+       getAllProducts()
+  
+       console.log(products)
     }, [category])
+
+
 
     // filter doesnt work
     useEffect(()=>{

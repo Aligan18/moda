@@ -7,6 +7,9 @@ import Register from '../pages/Register/Register';
 import Dashboard from '../pages/Admin/Dashboard/Dashboard'
 import ProductControlPage from '../pages/Admin/ProductControlPage/ProductControlPage';
 import ProductInfo from '../pages/Admin/ProductEdit/ProductEdit';
+import OrderControl from '../pages/Admin/OrderControl/OrderControl';
+import UserControl from '../pages/Admin/UserControl/UserControl';
+
 
 
 export const routerPaths ={
@@ -19,12 +22,15 @@ export const routerPaths ={
     SEARCH_PRODUCTS: '/products/search/',
     DASHBOARD: '/dashboard',
     ADMIN_PRODUCT_LIST: '/dashboard/products/',
-    ADMIN_PRODUCT_INFO:'/dashboard/product/:id' 
+    ADMIN_PRODUCT_INFO:'/dashboard/product/' ,
+    ADMIN_ORDER_LIST:'/dashboard/order/',
+    ADMIN_USER_LIST:'/dashboard/user/',
 }
 export const dynamicRouterPaths ={
    
     PRODUCT: '/product/:id', 
     PRODUCT_LIST: '/products/category/:category',
+    ADMIN_PRODUCT_INFO:'/dashboard/product/:id' ,
     
 }
 
@@ -36,7 +42,14 @@ export const PublicRouter =[
     {path: dynamicRouterPaths.PRODUCT, component:Product,  exact :true},
     {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
     {path: routerPaths.SEARCH_PRODUCTS, component:ProductList,  exact :true},
-    
+    // delete
+    {path: routerPaths.ADMIN_ORDER_LIST, component:OrderControl,  exact :true},
+    {path: routerPaths.DASHBOARD, component:Dashboard,  exact :true},
+    {path: routerPaths.ADMIN_PRODUCT_LIST, component:ProductControlPage,  exact :true},
+    {path: dynamicRouterPaths.ADMIN_PRODUCT_INFO, component:ProductInfo,  exact :true},
+    {path: routerPaths.ADMIN_USER_LIST, component:UserControl,  exact :true},
+
+   
     
 ]
 
@@ -47,6 +60,8 @@ export const PrivatRouter =[
     {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
     {path: routerPaths.SEARCH_PRODUCTS, component:ProductList,  exact :true},
     
+
+    
 ]
 
 export const DashboardRouter =[
@@ -56,8 +71,14 @@ export const DashboardRouter =[
     {path: dynamicRouterPaths.PRODUCT_LIST, component:ProductList,  exact :true},
     {path: routerPaths.SEARCH_PRODUCTS, component:ProductList,  exact :true},
     //Admin routes
+   
+   
+    {path: routerPaths.ADMIN_PRODUCT_INFO, component:ProductInfo,  exact :true},
+    {path: routerPaths.ADMIN_ORDER_LIST, component:OrderControl,  exact :true},
     {path: routerPaths.DASHBOARD, component:Dashboard,  exact :true},
     {path: routerPaths.ADMIN_PRODUCT_LIST, component:ProductControlPage,  exact :true},
-    {path: routerPaths.ADMIN_PRODUCT_INFO, component:ProductInfo,  exact :true},
+    {path: dynamicRouterPaths.ADMIN_PRODUCT_INFO, component:ProductInfo,  exact :true},
+    {path: routerPaths.ADMIN_USER_LIST, component:UserControl,  exact :true},
+
     
 ]

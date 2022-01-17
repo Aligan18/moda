@@ -10,16 +10,14 @@ import { useSelector } from 'react-redux';
 
 
 function App() {
-    // let auth=useSelector(state=>state.user.currentUser)
+    let auth=useSelector(state=>state.user.currentUser)
 
-    // const isAdmin =  auth? auth.isAdmin : false
+    const isAdmin =  auth? auth.isAdmin : false
     
-    // auth = auth? true : false
+   
 
-
-    const auth = true
-    const isAdmin = true
-
+    auth = auth? true : false
+ 
     console.log('admin',isAdmin)
 
 

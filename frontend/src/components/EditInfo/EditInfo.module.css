@@ -1,0 +1,25 @@
+.input_box{
+      display: flex;
+     justify-content: space-between;
+
+}
+.input{
+
+    width:50%;
+    height:auto;
+
+}
+.textarea{
+
+  border-radius: 8px;
+  resize: none;
+  padding: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 10px;
+  width: 400px;
+  margin-bottom: 15px;
+
+}
+

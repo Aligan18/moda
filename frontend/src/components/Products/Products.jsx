@@ -7,11 +7,11 @@ import classes from './Products.module.css'
 
 
 const Products = ({products}) => {
-   
+
 
     return (
         <div className={classes.container}>
-            {products.map(product =>(
+            {products && products.map(product =>(
                 <ItemsProducts classes={classes} key={product._id} product={product} />
             ))
             }

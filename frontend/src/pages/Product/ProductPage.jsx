@@ -7,9 +7,12 @@ import MyNavbar from '../../components/Navbar/MyNavbar'
 import Footer from '../../components/Footer/Footer'
 import AboutProduct from '../../components/AboutProduct/AboutProduct'
 
+import fetchProduct from '../../tools/fetchProduct'
 
 import { useDispatch, useSelector} from 'react-redux'
 import CartTools from "../../tools/cartTools"
+
+
 
 
 const Product = () => {
@@ -26,13 +29,7 @@ const Product = () => {
 
     useEffect(() => {
        const getProductById = async () =>{
-            try {
-                const res = await publicRequest.get(`api/product/find/${id}`)
-            console.log(res)
-                setProduct(res.data)
-            } catch (error) {
-                console.log(error)
-            }
+            setProduct(await fetchProduct.ById(id))
         }
         getProductById()
 

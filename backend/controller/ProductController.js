@@ -44,7 +44,7 @@ class ProductController{
             res.status(200).json("Product has been deleted")
 
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).send(error)
         }   
     }
 

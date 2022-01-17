@@ -3,10 +3,10 @@ const Controller= require('../controller/OrderController')
 const {verifyTokenAndAuthorization , verifyTokenAndAdmin}= require('../service/verifyToken')
 
 // User create order
-router.post('/order',verifyTokenAndAuthorization, Controller.CreatOrder)
+router.post('/order/create/:id',verifyTokenAndAuthorization, Controller.CreatOrder)
 
 // Admin update order
-router.put('/order/update:id', verifyTokenAndAdmin, Controller.UpdateOrder)
+router.put('/order/update/:id', verifyTokenAndAdmin, Controller.UpdateOrder)
 
 // Admin Delete order
 router.delete('/order/delete/:id', verifyTokenAndAdmin, Controller.DeleteOrder)

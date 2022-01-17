@@ -16,7 +16,10 @@ const SidePanel = ({ show,setShow }) => {
         <Offcanvas.Header closeButton>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Link to={routerPaths.ADMIN_PRODUCT_LIST}>Продукты</Link>
+          
+          <li><Link to={routerPaths.ADMIN_PRODUCT_LIST}>Продукты</Link></li>
+          <li><Link to={routerPaths.ADMIN_ORDER_LIST}>Заказы</Link></li>
+          <li><Link to={routerPaths.ADMIN_USER_LIST}>Пользователи</Link></li>
           
         </Offcanvas.Body>
       </Offcanvas>

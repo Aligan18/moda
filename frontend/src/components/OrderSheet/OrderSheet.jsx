@@ -1,10 +1,10 @@
 import React from 'react'
 import classes from './OrderSheet.module.css'
 
-const OrderSheet = ({cart}) => {
+const OrderSheet = ({cart,  setModalShow ,delivery ,sale,}) => {
 
-    const delivery = 2000
-    const sale = 1000
+    
+    
 
     return (
         <div className={classes.wrapper}>
@@ -29,7 +29,7 @@ const OrderSheet = ({cart}) => {
                 <h4 className={classes.price}>{cart.total + delivery - sale}</h4>
             </div>
             <div className={classes.bottom}>
-                <button className={classes.btn}>Сделать заказ</button>
+                <button onClick={()=>setModalShow(true)} className={classes.btn}>Сделать заказ</button>
             </div>
         </div>
     )

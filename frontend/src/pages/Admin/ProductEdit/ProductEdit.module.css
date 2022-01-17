@@ -29,3 +29,21 @@
     height: 50px;
     
 }
+.preview_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.edit_btn{
+    margin: 20px;
+    width:135px
+}
+
+.editInfo{
+    display: block;
+    width: 45%;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius:20px;
+}

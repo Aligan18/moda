@@ -3,8 +3,9 @@ import { Link, useHistory } from 'react-router-dom'
 import {  routerPaths } from '../../../router/router'
 import { useDispatch, useSelector } from 'react-redux'
 import CartTools from "../../../tools/cartTools"
+import image from '../../../source/5.jpg'
 
-const ItemsProducts = ({product , classes}) => {
+const ItemsProducts = ({product , classes, preview}) => {
     const auth = useSelector(state => state.user.currentUser)
     const history =useHistory()
 
@@ -17,7 +18,7 @@ const ItemsProducts = ({product , classes}) => {
              : history.push('/login')
       
     }
-
+    // 
     return (
         <div className={classes.product_container}>
             
@@ -34,7 +35,7 @@ const ItemsProducts = ({product , classes}) => {
                     </div>
                 </div>
                 {/* Icons */}
-                <div className={classes.info}>
+                {!preview && <div className={classes.info}>
                     {/* Add to cart */}
                     <div onClick={addCart} className={classes.icon_circle}>
                          <i className={`fas fa-cart-plus ${classes.icon}`}></i>
@@ -50,7 +51,7 @@ const ItemsProducts = ({product , classes}) => {
                     <div className={classes.icon_circle}>
                         <i className={`far fa-heart ${classes.icon}`}></i>
                     </div>
-            </div>
+            </div>}
             
         </div>
     )
